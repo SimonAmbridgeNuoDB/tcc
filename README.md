@@ -1,6 +1,6 @@
 # tcc
 The following script can be used to simulate latency and bandwidth limitations for a remote node.
-
+```
 $ ./tcc.sh -h
 
    Usage: ./tcc.sh -s <IP list> -t <IP list> [-d <device>] -r <delay> [-b <bandwidth>]
@@ -24,10 +24,10 @@ $ ./tcc.sh -h
 
       As above, but use eth1 network device instead of the default eth0:
         $ ./tcc.sh -s "3.10.138.208"  -t "3.10.138.12" -r 100 -b 1024 -d eth1
-
+```
 
 For example:
-``
+```
 $ ./tcc.sh -s "3.10.138.208"  -t "3.10.138.12" -r 100 -b 1024 -d probe
 
 tcc will shape network traffic:
@@ -63,4 +63,4 @@ qdisc prio 1: dev eth0 root refcnt 9 bands 10 priomap  1 2 2 2 1 2 0 0 1 1 1 1 1
 qdisc netem 10: dev eth0 parent 1:1 limit 1000 delay 100.0ms
 qdisc tbf 20: dev eth0 parent 1:2 rate 1024Kbit burst 1599b lat 10.9ms
 ------------------------------------------------------------
-``
+```
