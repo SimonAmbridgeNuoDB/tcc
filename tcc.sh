@@ -8,18 +8,23 @@
 usage() {
    cat <<EOF
 
-   Usage: $0 -s <IP list> -t <IP list> [-d <device>] -r <delay> [-b <bandwidth>]
+   Usage: $0 -s <Source IP list> -t <Target IP list> [-d <device>] -r <delay> [-b <bandwidth>]
    where:
-      -s list of source IP(s) separated by spaces
-      -t list of target IP(s) separated by spaces
-      -d active network device name on source machines
+      -s <list> source IP(s) separated by spaces
+      -t <list> target IP(s) separated by spaces
+      -d <nic> active network device name on source machines
            if blank the device will default to eth0
            use -d probe to discover an adapter
-      -r transmission delay (ms) - integer
-      -b bandwidth limit (kbps) - integer
-           if blank will not set a bandwidth limit
+      -r <int> transmission delay (ms) - integer
+      -b <int> bandwidth limit (kbps) - integer
+           if not specified bandwidth is not changed
+      -c <y|n> - clear rules set on source IP(s)
 
-    Values for source, target and rate must be specified
+    Values must be specified for:
+       - source, target and rate
+         or
+       - source and clear flag
+
     Examples:
       Add a 100 ms transmission delay on eth0 (default) from 3.10.138.208 to 3.10.138.12:
         $ ./tcc.sh -s "3.10.138.208"  -t "3.10.138.12" -r 100
@@ -30,6 +35,12 @@ usage() {
       As above, but use eth1 network device instead of the default eth0:
         $ ./tcc.sh -s "3.10.138.208"  -t "3.10.138.12" -r 100 -b 1024 -d eth1
 
+      As above, but detect the network device:
+        $ ./tcc.sh -s "3.10.138.208"  -t "3.10.138.12" -r 100 -b 1024 -d probe
+
+      Detect adapter on the source node(s) and remove all traffic rules:
+        $ ./tcc.sh -s "3.10.138.208" -c y  -d probe
+
 EOF
 exit 0
 }
@@ -39,8 +50,9 @@ TARGETS=""  # list of target IP(s)
 DEVICE=""   # network device name on source machine(s)
 RATE=""     # transmission delay (ms)
 BWIDTH=""   # bandwidth limit (kbps)
+CLEAR=""    # reset settings on source(s)
 
-while getopts s:t:d:r:b:h curropt
+while getopts s:t:d:r:b:c:h? curropt
 do
   case $curropt in
     s) SOURCES="$OPTARG" ;;
@@ -48,33 +60,61 @@ do
     d) DEVICE="$OPTARG" ;;
     r) RATE="$OPTARG" ;;
     b) BWIDTH="$OPTARG" ;;
+    c) CLEAR="$OPTARG" ;;
     h) usage ;;
     ?) usage ;;
-    *) usage ;;
   esac
 done
 
 #------------------
 # input validation
 #-------------------
-if [ ! "${SOURCES}" ] || [ ! "${TARGETS}" ] || [ ! "${RATE}" ]
+if [ -n "$CLEAR" ]
 then
+  if ! [[ "$CLEAR" =~ ^[yYnN]+$ ]]; then
+    echo "[ERROR]: -c must be in [yY|nN]"
+    usage
+    exit 1
+  fi
+fi
+
+FAIL="1"
+if [[ -n "$SOURCES" && -n "$TARGETS"  && -n "$RATE" ]]
+then
+  FAIL="0"
+elif [[ -n "$SOURCES" && -n "$CLEAR" ]]
+then
+  FAIL="0"
+fi
+
+if [[ $FAIL == "1" ]]
+then
+  echo "[ERROR]: combinations must be either:"
+  echo "   -s <Source IP list> -t <Target IP list> -r <delay> "
+  echo "or"
+  echo "   -s <Source IP list> -c <y|n>"
   usage
   exit 1
 fi
 
-if ! [[ "${RATE}" =~ ^[0-9]+$ ]]; then
-  echo "[ERROR]: Rate must be an integer"
-  echo ""
-  usage
-  exit 0
-fi
-
-if ! [[ "${BWIDTH}" =~ ^[0-9]+$ ]]; then
-  echo "[ERROR]: Bandwidth limit must be an integer"
-  echo ""
-  usage
-  exit 0
+if [ -z "$CLEAR" ]
+then
+  if ! [[ "${RATE}" =~ ^[0-9]+$ ]]; then
+    echo "[ERROR]: Rate must be an integer"
+    echo ""
+    usage
+    exit 1
+  fi
+  if [ "$BWIDTH" ]
+  then
+    if ! [[ "${BWIDTH}" =~ ^[0-9]+$ ]]
+    then
+      echo "[ERROR]: Bandwidth limit must be an integer"
+      echo ""
+      usage
+      exit 1
+    fi
+  fi
 fi
 
 if [ ! "${DEVICE}" ]
@@ -91,11 +131,21 @@ echo "    from Source      ["$SOURCES"]"
 echo "      to Destination ["$TARGETS"]"
 echo "    using:"
 echo "         Device      ["$DEVICE_NAME"]"
-echo "         Speed       ["$RATE"] ms"
-echo "         Bandwidth   ["$BWIDTH"] kbps"
+if [ "${CLEAR}" ]
+then
+  echo "         Option       clear="$CLEAR
+else
+  echo "         Speed       ["$RATE"] ms"
+  if [ "$BWIDTH" ]
+  then
+    echo "         Bandwidth   ["$BWIDTH"] kbps"
+  else
+    echo "         Bandwidth   [Not set]"
+  fi
+fi
 echo ""
 
-#exit 1
+#exit 0
 
 #----------------------------------------
 # loop through source and target machines
@@ -122,7 +172,7 @@ for SOURCEHOST in $SOURCES; do
       echo ""
       exit 0
     else
-      echo "...[SUCCESS}: "\$NIC" found"
+      echo "...[SUCCESS]: "\$NIC" found"
     fi
   fi
 
@@ -137,36 +187,41 @@ for SOURCEHOST in $SOURCES; do
     echo ".....No egress rules to delete"
   fi
 
-  echo "...Create new egress qdisc rules on "\$NIC
-  #sudo tc qdisc add dev \$NIC root netem delay 500ms
-  sudo tc qdisc add dev \$NIC root handle 1: prio bands 10
-  echo ".....Set transmission delay to "$RATE"ms on "\$NIC
-  sudo tc qdisc add dev \$NIC parent 1:1 handle 10: netem delay ${RATE}ms
-
-  if [[ "$BWIDTH" ]]
+  if [ "$CLEAR" ]
   then
-    echo ".....Set bandwidth to "$BWIDTH"kbps on "\$NIC
-    sudo tc qdisc add dev \$NIC parent 1:2 handle 20: tbf rate ${BWIDTH}kbit buffer 1600 limit 3000
+    echo "Rules cleared on "\$NIC", exiting"
   else
-    echo ".....Bandwidth not set on "\$NIC
+    echo "...Create new egress qdisc rules on "\$NIC
+    #sudo tc qdisc add dev \$NIC root netem delay 500ms
+    sudo tc qdisc add dev \$NIC root handle 1: prio bands 10
+    echo ".....Set transmission delay to "$RATE"ms on "\$NIC
+    sudo tc qdisc add dev \$NIC parent 1:1 handle 10: netem delay ${RATE}ms
+
+    if [ "$BWIDTH" ]
+    then
+      echo ".....Set bandwidth to "$BWIDTH"kbps on "\$NIC
+      sudo tc qdisc add dev \$NIC parent 1:2 handle 20: tbf rate ${BWIDTH}kbit buffer 1600 limit 3000
+    else
+      echo ".....Bandwidth not set on "\$NIC
+    fi
+
+    echo ".....Create tc filters for "\$NIC" traffic to all hosts in ["$TARGETS"]"
+
+    for TARGETHOST in $TARGETS; do
+      echo ".......Setting "\$NIC" filter for traffic to "\$TARGETHOST"..."
+      sudo tc filter add dev \$NIC protocol ip parent 1:0 prio 1 u32 match ip src 0.0.0.0/0 match ip dst \$TARGETHOST flowid 10:1
+      echo ".....Ping test to "\$TARGETHOST":"
+      ping_result=\$(ping -c 1 \$TARGETHOST | grep time=)
+      echo "......."\$ping_result
+    done
+
+    echo "...Ping check to Google:"
+    ping_result=\$(ping -c 1 www.google.com | grep time=)
+    echo "....."\$ping_result
   fi
 
-  echo ".....Create tc filters for "\$NIC" traffic to all hosts in ["$TARGETS"]"
-
-  for TARGETHOST in $TARGETS; do
-    echo ".......Setting "\$NIC" filter for traffic to "\$TARGETHOST"..."
-    sudo tc filter add dev \$NIC protocol ip parent 1:0 prio 1 u32 match ip src 0.0.0.0/0 match ip dst \$TARGETHOST flowid 10:1
-    echo "...Ping test to "\$TARGETHOST":"
-    ping_result=\$(ping -c 1 \$TARGETHOST | grep time=)
-    echo "....."\$ping_result
-  done
-
-  echo "...Ping check to Google:"
-  ping_result=\$(ping -c 1 www.google.com | grep time=)
-  echo "....."\$ping_result
-
   echo "------------------------------------------------------------"
-  echo "egress rules created on "${SOURCEHOST}
+  echo "egress rules "${SOURCEHOST}
   echo "------------------------------------------------------------"
   sudo tc -s qdisc | grep qdisc
   echo "------------------------------------------------------------"
