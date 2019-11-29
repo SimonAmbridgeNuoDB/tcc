@@ -3,7 +3,7 @@ The following script can be used to simulate latency and bandwidth limitations f
 ```
 $ ./tcc.sh -h
 
-```
+
 [ERROR]: combinations must be either:
    -s <Source IP list> -t <Target IP list> -r <delay>
 or
