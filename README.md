@@ -3,18 +3,29 @@ The following script can be used to simulate latency and bandwidth limitations f
 ```
 $ ./tcc.sh -h
 
-   Usage: ./tcc.sh -s <IP list> -t <IP list> [-d <device>] -r <delay> [-b <bandwidth>]
+```
+[ERROR]: combinations must be either:
+   -s <Source IP list> -t <Target IP list> -r <delay>
+or
+   -s <Source IP list> -c <y|n>
+
+   Usage: ./tcc.sh -s <Source IP list> -t <Target IP list> [-d <device>] -r <delay> [-b <bandwidth>]
    where:
-      -s list of source IP(s) separated by spaces
-      -t list of target IP(s) separated by spaces
-      -d active network device name on source machines
+      -s <list> source IP(s) separated by spaces
+      -t <list> target IP(s) separated by spaces
+      -d <nic> active network device name on source machines
            if blank the device will default to eth0
            use -d probe to discover an adapter
-      -r transmission delay (ms) - integer
-      -b bandwidth limit (kbps) - integer
-           if blank will not set a bandwidth limit
+      -r <int> transmission delay (ms) - integer
+      -b <int> bandwidth limit (kbps) - integer
+           if not specified bandwidth is not changed
+      -c <y|n> - clear rules set on source IP(s)
 
-    Values for source, target and rate must be specified
+    Values must be specified for:
+       - source, target and rate
+         or
+       - source and clear flag
+
     Examples:
       Add a 100 ms transmission delay on eth0 (default) from 3.10.138.208 to 3.10.138.12:
         $ ./tcc.sh -s "3.10.138.208"  -t "3.10.138.12" -r 100
@@ -24,6 +35,12 @@ $ ./tcc.sh -h
 
       As above, but use eth1 network device instead of the default eth0:
         $ ./tcc.sh -s "3.10.138.208"  -t "3.10.138.12" -r 100 -b 1024 -d eth1
+
+      As above, but detect the network device:
+        $ ./tcc.sh -s "3.10.138.208"  -t "3.10.138.12" -r 100 -b 1024 -d probe
+
+      Detect adapter on the source node(s) and remove all traffic rules:
+        $ ./tcc.sh -s "3.10.138.208" -c y  -d probe
 ```
 
 For example:
