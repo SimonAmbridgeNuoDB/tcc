@@ -8,17 +8,19 @@
 usage() {
    cat <<EOF
 
-   Usage: $0 -s <Source IP list> -t <Target IP list> [-d <device>] -r <delay> [-b <bandwidth>]
+   Usage:
+   $0 -s <Source IP list> -t <Target IP list> [-d <device>] -r <delay> [-b <bandwidth>]
+   $0 -s <Source IP list> -c [y|n]
    where:
       -s <list> source IP(s) separated by spaces
       -t <list> target IP(s) separated by spaces
       -d <nic> active network device name on source machines
            if blank the device will default to eth0
-           use -d probe to discover an adapter
+           use < -d probe > to discover an adapter
       -r <int> transmission delay (ms) - integer
       -b <int> bandwidth limit (kbps) - integer
            if not specified bandwidth is not changed
-      -c <y|n> - clear rules set on source IP(s)
+      -c <y|n> clear rules on source IP(s)
 
     Values must be specified for:
        - source, target and rate
@@ -52,7 +54,7 @@ RATE=""     # transmission delay (ms)
 BWIDTH=""   # bandwidth limit (kbps)
 CLEAR=""    # reset settings on source(s)
 
-while getopts s:t:d:r:b:c:h? curropt
+while getopts s:t:d:r:b:c:h?* curropt
 do
   case $curropt in
     s) SOURCES="$OPTARG" ;;
@@ -63,12 +65,15 @@ do
     c) CLEAR="$OPTARG" ;;
     h) usage ;;
     ?) usage ;;
+    *) usage ;;
   esac
 done
 
 #------------------
 # input validation
 #-------------------
+echo ""
+# is this a clear operation?
 if [ -n "$CLEAR" ]
 then
   if ! [[ "$CLEAR" =~ ^[yYnN]+$ ]]; then
@@ -89,9 +94,10 @@ fi
 
 if [[ $FAIL == "1" ]]
 then
-  echo "[ERROR]: combinations must be either:"
+  echo "[ERROR]: option combinations must be either:"
+  echo ""
   echo "   -s <Source IP list> -t <Target IP list> -r <delay> "
-  echo "or"
+  echo "      or"
   echo "   -s <Source IP list> -c <y|n>"
   usage
   exit 1
@@ -228,3 +234,4 @@ for SOURCEHOST in $SOURCES; do
   echo ""
 "
 done
+
