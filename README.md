@@ -78,7 +78,7 @@ qdisc netem 10: dev eth0 parent 1:1 limit 1000 delay 100.0ms
 qdisc tbf 20: dev eth0 parent 1:2 rate 1024Kbit burst 1599b lat 10.9ms
 ------------------------------------------------------------
 ```
-To clear rules set on a machine single machine, default to eth0:
+To clear rules set on a single machine, default to eth0:
 ```
 $ ./tcc.sh -s 3.10.138.208 -c y
 
