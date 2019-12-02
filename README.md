@@ -4,22 +4,19 @@ The following script can be used to simulate latency and bandwidth limitations f
 $ ./tcc.sh -h
 
 
-[ERROR]: combinations must be either:
-   -s <Source IP list> -t <Target IP list> -r <delay>
-or
-   -s <Source IP list> -c <y|n>
-
-   Usage: ./tcc.sh -s <Source IP list> -t <Target IP list> [-d <device>] -r <delay> [-b <bandwidth>]
+   Usage:
+   ./tcc.sh -s <Source IP list> -t <Target IP list> [-d <device>] -r <delay> [-b <bandwidth>]
+   ./tcc.sh -s <Source IP list> -c [y|n]
    where:
       -s <list> source IP(s) separated by spaces
       -t <list> target IP(s) separated by spaces
       -d <nic> active network device name on source machines
            if blank the device will default to eth0
-           use -d probe to discover an adapter
+           use < -d probe > to discover an adapter
       -r <int> transmission delay (ms) - integer
       -b <int> bandwidth limit (kbps) - integer
            if not specified bandwidth is not changed
-      -c <y|n> - clear rules set on source IP(s)
+      -c <y|n> clear rules on source IP(s)
 
     Values must be specified for:
        - source, target and rate
@@ -79,5 +76,40 @@ qdisc noqueue 0: dev lo root refcnt 2
 qdisc prio 1: dev eth0 root refcnt 9 bands 10 priomap  1 2 2 2 1 2 0 0 1 1 1 1 1 1 1 1
 qdisc netem 10: dev eth0 parent 1:1 limit 1000 delay 100.0ms
 qdisc tbf 20: dev eth0 parent 1:2 rate 1024Kbit burst 1599b lat 10.9ms
+------------------------------------------------------------
+```
+To clear rules set on a machine single machine, default to eth0:
+```
+$ ./tcc.sh -s 3.10.138.208 -c y
+
+
+tcc will shape network traffic:
+    from Source      [3.10.138.208]
+      to Destination []
+    using:
+         Device      [eth0 - default]
+         Option      [clear=y]
+
+Connecting to 3.10.138.208...
+Connected.
+...Host name: ip-172-31-36-8.eu-west-2.compute.internal
+...Checking eth0 exists
+...[SUCCESS]: eth0 found
+...Checking eth0 existing egress rules
+.....No egress rules to delete
+Rules cleared on eth0, exiting
+------------------------------------------------------------
+egress rules 3.10.138.208
+------------------------------------------------------------
+qdisc noqueue 0: dev lo root refcnt 2
+qdisc mq 0: dev eth0 root
+qdisc pfifo_fast 0: dev eth0 parent :8 bands 3 priomap  1 2 2 2 1 2 0 0 1 1 1 1 1 1 1 1
+qdisc pfifo_fast 0: dev eth0 parent :7 bands 3 priomap  1 2 2 2 1 2 0 0 1 1 1 1 1 1 1 1
+qdisc pfifo_fast 0: dev eth0 parent :6 bands 3 priomap  1 2 2 2 1 2 0 0 1 1 1 1 1 1 1 1
+qdisc pfifo_fast 0: dev eth0 parent :5 bands 3 priomap  1 2 2 2 1 2 0 0 1 1 1 1 1 1 1 1
+qdisc pfifo_fast 0: dev eth0 parent :4 bands 3 priomap  1 2 2 2 1 2 0 0 1 1 1 1 1 1 1 1
+qdisc pfifo_fast 0: dev eth0 parent :3 bands 3 priomap  1 2 2 2 1 2 0 0 1 1 1 1 1 1 1 1
+qdisc pfifo_fast 0: dev eth0 parent :2 bands 3 priomap  1 2 2 2 1 2 0 0 1 1 1 1 1 1 1 1
+qdisc pfifo_fast 0: dev eth0 parent :1 bands 3 priomap  1 2 2 2 1 2 0 0 1 1 1 1 1 1 1 1
 ------------------------------------------------------------
 ```

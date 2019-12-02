@@ -23,9 +23,9 @@ usage() {
       -c <y|n> clear rules on source IP(s)
 
     Values must be specified for:
-       - source, target and rate
-         or
-       - source and clear flag
+       1. source, target and rate
+           or
+       2. source and clear flag
 
     Examples:
       Add a 100 ms transmission delay on eth0 (default) from 3.10.138.208 to 3.10.138.12:
@@ -34,7 +34,7 @@ usage() {
       As above, but also set a 1024kbps bandwidth limit:
         $ ./tcc.sh -s "3.10.138.208"  -t "3.10.138.12" -r 100 -b 1024
 
-      As above, but use eth1 network device instead of the default eth0:
+      As above, but specify eth1 network device instead of the default eth0:
         $ ./tcc.sh -s "3.10.138.208"  -t "3.10.138.12" -r 100 -b 1024 -d eth1
 
       As above, but detect the network device:
@@ -73,15 +73,6 @@ done
 # input validation
 #-------------------
 echo ""
-# is this a clear operation?
-if [ -n "$CLEAR" ]
-then
-  if ! [[ "$CLEAR" =~ ^[yYnN]+$ ]]; then
-    echo "[ERROR]: -c must be in [yY|nN]"
-    usage
-    exit 1
-  fi
-fi
 
 FAIL="1"
 if [[ -n "$SOURCES" && -n "$TARGETS"  && -n "$RATE" ]]
@@ -121,6 +112,12 @@ then
       exit 1
     fi
   fi
+else
+  if ! [[ "$CLEAR" =~ ^[yYnN]+$ ]]; then
+    echo "[ERROR]: -c must be in [yY|nN]"
+    usage
+    exit 1
+  fi
 fi
 
 if [ ! "${DEVICE}" ]
@@ -139,7 +136,7 @@ echo "    using:"
 echo "         Device      ["$DEVICE_NAME"]"
 if [ "${CLEAR}" ]
 then
-  echo "         Option       clear="$CLEAR
+  echo "         Option      [clear="$CLEAR"]"
 else
   echo "         Speed       ["$RATE"] ms"
   if [ "$BWIDTH" ]
@@ -234,4 +231,3 @@ for SOURCEHOST in $SOURCES; do
   echo ""
 "
 done
-

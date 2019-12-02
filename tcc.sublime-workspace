@@ -1,0 +1,243 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/sambridge/Documents/Projects/GitHub/tcc/tcc.sublime-workspace",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/Temenos/EFG/tcc.sh",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/HSBC/DSL/Coherence PoC/AWS_Prototype/DSL_Protoype_Setup.txt",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/Temenos/EFG/Test Rig Build.txt",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/Temenos/EFG/EFG Backup Demo",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/Temenos/EFG/EFG.sublime-project",
+		"/Users/sambridge/Documents/Repository/DataStax/SE_SFDC.xlsx",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Artefacts/Performance_Scripts/SFRA-Ad-Hoc-Alloc-Query.sql",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Snapshot_Dimension_Data/Sample_CDL_Snapshot_Dimension Data/cdl_d__control_report_section-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Snapshot_Dimension_Data/Sample_CDL_Snapshot_Dimension Data/cdl_d_book-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Snapshot_Dimension_Data/Sample_CDL_Snapshot_Dimension Data/cdl_d_bus_pop_group-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Snapshot_Dimension_Data/Sample_CDL_Snapshot_Dimension Data/cdl_d_bus_pop_group_member-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Snapshot_Dimension_Data/Sample_CDL_Snapshot_Dimension Data/cdl_d_collateral_agmt-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Snapshot_Dimension_Data/Sample_CDL_Snapshot_Dimension Data/cdl_d_country-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Snapshot_Dimension_Data/Sample_CDL_Snapshot_Dimension Data/cdl_d_db_issuance_struct-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Stress_F_Result_Fact_Data/Sample_STRESS_F_RESULT_Fact_Data.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Stress_F_Result_Alloc_Fact_Data/Sample_STRESS_F_RESULT_ALLOC_Fact_Data.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Stress_Dimension_Data/Sample_STRESS_Dimension_SC_Data/stress_d_vector_type-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Snapshot_Dimension_Data/Sample_CDL_Snapshot_Dimension Data/cdl_d_instrument-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Snapshot_Dimension_Data/Sample_CDL_Snapshot_Dimension Data/cdl_d_maturity_bucket-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Snapshot_Dimension_Data/Sample_CDL_Snapshot_Dimension Data/cdl_d_mrgn_structure-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Snapshot_Dimension_Data/Sample_CDL_Snapshot_Dimension Data/cdl_d_party-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Snapshot_Dimension_Data/Sample_CDL_Snapshot_Dimension Data/cdl_d_party_relationship-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Snapshot_Dimension_Data/Sample_CDL_Snapshot_Dimension Data/cdl_d_party_reporting_group-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Snapshot_Dimension_Data/Sample_CDL_Snapshot_Dimension Data/cdl_d_prds_product-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Snapshot_Dimension_Data/Sample_CDL_Snapshot_Dimension Data/cdl_d_product-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Snapshot_Dimension_Data/Sample_CDL_Snapshot_Dimension Data/cdl_d_product_hierarchy-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Snapshot_Dimension_Data/Sample_CDL_Snapshot_Dimension Data/cdl_d_reporting_grp-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Snapshot_Dimension_Data/Sample_CDL_Snapshot_Dimension Data/cdl_d_snapshot-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Snapshot_Dimension_Data/Sample_CDL_Snapshot_Dimension Data/cdl_d_sub_account-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Snapshot_Dimension_Data/Sample_CDL_Snapshot_Dimension Data/cdl_d_ubr-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Stress_Dimension_Data/Sample_STRESS_Dimension_SC_Data/stress_d_scenario-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Stress_Dimension_Data/Sample_STRESS_Dimension_SC_Data/stress_d_report_entity-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Stress_Dimension_Data/Sample_STRESS_Dimension_SC_Data/stress_d_lrd_vector_map-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Stress_Dimension_Data/Sample_STRESS_Dimension_SC_Data/stress_d_lrd_item-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Stress_Dimension_Data/Sample_STRESS_Dimension_SC_Data/stress_d_lrd-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Stress_Dimension_Data/Sample_STRESS_Dimension_SC_Data/stress_d_calculation_type-Table 1.csv",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Sample_Data/Snapshot_Dimension_Data/Sample_CDL_Snapshot_Dimension Data/d_baseline_dataset-Table 1.csv",
+		"/Users/sambridge/Documents/Build_log.txt",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Artefacts/DDL/STRESS-F-RESULT-ALLOC-View-DDL.txt",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test_Pack/Artefacts/DDL/STRESS-F-RESULT-ALLOC-Table-DDL.txt",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/Temenos/EFG/Test Rig Build",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/HSBC/DSL/Coherence PoC/AWS_Prototype/dsl_create_schema8.sql",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test Pack/Artefacts/DDL/STRESS-F-RESULT-View-DDL.txt",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test Pack/Artefacts/DDL/STRESS-F-RESULT-Table-DDL.txt",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test Pack/Artefacts/DDL/STRESS-F-RESULT-ALLOC-Table-DDL.txt",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test Pack/Artefacts/DDL/CDL-tables-DDL.txt",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test Pack/Artefacts/DDL/CDL-views-DDL.sql.txt",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test Pack/Artefacts/Table Column Statistics/README.txt",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test Pack/Artefacts/Sample Joins/README.txt",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test Pack/SAMPLE DATA/README.txt",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/DB/Treasury/Test Pack/word/embeddings/oleObject1.txt",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/HSBC/DSL/Coherence PoC/AWS_Prototype/Errors",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/HSBC/DSL/Coherence PoC/AWS_Prototype/20191001-Talat-Simon.txt",
+		"/Users/sambridge/Documents/Repository/NuoDB/Tools/SimpleDriver/SD-Readme.txt",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/Temenos/EFG/multi-az install",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/HSBC/DSL/Coherence PoC/AWS_Prototype/dsl_create_schema6.sql",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/HSBC/DSL/Coherence PoC/AWS_Prototype/dsl_create_schema.sql",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/HSBC/DSL/Coherence PoC/AWS_Prototype/dsl_create_schema3.sql",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/HSBC/DSL/Coherence PoC/AWS_Prototype/dsl_create_schema2.sql",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/HSBC/DSL/Coherence PoC/AWS_Prototype/dsl_create_schema7.sql",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/HSBC/DSL/Coherence PoC/AWS_Prototype/dsl_create_schema5.sql",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/HSBC/DSL/Coherence PoC/AWS_Prototype/dsl_create_schema4.sql",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/HSBC/DSL/Star Schema PoC/sql/create_schema2.sql",
+		"/Users/sambridge/Documents/Repository/NuoDB/Customers/HSBC/DSL/Coherence PoC/20191001-Talat-Simon.txt",
+		"/Users/sambridge/Documents/Projects/Minishift/Operator",
+		"/Users/sambridge/Documents/Projects/Openshift/nuodb-setenv.sh",
+		"/Users/sambridge/Documents/Projects/Minishift/Helm_setup.txt",
+		"/Users/sambridge/Documents/Projects/Minishift/Minishift_deploying-projects.txt",
+		"/Users/sambridge/Documents/Projects/Minishift/Minishift_setup.txt",
+		"/Users/sambridge/Documents/Projects/helm/darwin-amd64/$ .:kubernetes_add_service_account_kubeconfig.txt",
+		"/Users/sambridge/Documents/Repository/NuoDB/Tech Docs/NuoDB New Admin",
+		"/Users/sambridge/Documents/Projects/Minishift/Minishift_startup_log.txt",
+		"/Users/sambridge/Documents/Projects/Minishift/Helm",
+		"/Users/sambridge/Documents/Projects/Minishift/Using Minishift - deploying projects",
+		"/Users/sambridge/Documents/Projects/Minishift/Minishift.txt",
+		"/Users/sambridge/Documents/Projects/Openshift/Openshift/Helm",
+		"/Users/sambridge/Documents/Projects/Openshift/Openshift/Minishift.txt",
+		"/Users/sambridge/Documents/Projects/Openshift/Openshift.txt"
+	],
+	"find":
+	{
+		"height": 26.0
+	},
+	"find_in_files":
+	{
+		"height": 101.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "tcc.sublime-project",
+	"replace":
+	{
+		"height": 70.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 278.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
